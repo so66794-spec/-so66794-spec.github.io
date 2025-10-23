@@ -13,7 +13,7 @@
 function toggleMenu() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show")== -1) {
-    x.className += "w3-show";
+    x.className += " w3-show";
   } else {
     x.className = x.className.replace(" w3-show","");
   }
@@ -54,10 +54,10 @@ window.onload = function() {carousel(); };
 
  <!--mobile hamnburger memu-->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-    <a href="#experience" class="w3-bar-item w3-button"> onclick="toggleMenu"()>Work experience</a>
-    <a href="#gallery" class="w3-bar-item w3-button"> onclick="toggleMenu"()>Gallery</a>
-    <a href="#about" class="w3-bar-item w3-button"> onclick="toggleMenu"()>About me</a>
-    <a href="#contact" class="w3-bar-item w3-button"> onclick="toggleMenu"()>Contact</a>
+    <a href="#experience" class="w3-bar-item w3-button" onclick="toggleMenu()">Work experience</a>
+    <a href="#gallery" class="w3-bar-item w3-button" onclick="toggleMenu"()>Gallery</a>
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleMenu"()>About me</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleMenu"()>Contact</a>
   </div>
 </div>
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
