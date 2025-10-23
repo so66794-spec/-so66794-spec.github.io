@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style> .mySlides {display: none; }</style>
 <script>
-<--The mobile menu for my website-->
+<!--The mobile menu for my website-->
   function toggleMenu() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show")== -1) {
@@ -17,7 +17,7 @@
     }
 }
 
-<--slide carousel for gallery for every 3 seconds to change pictures -->
+<!--slide carousel for gallery for every 3 seconds to change pictures -->
 var slideIndex =0;
 function carousel() {
   var i;
@@ -28,7 +28,7 @@ function carousel() {
   if (x.length > 0) x[slideIndex-1].style.display ="block";
   setTimeout(carousel, 3000);
 }
-<-- the slide carousel should start after the page loads-->
+<!-- the slide carousel should start after the page loads-->
 window.onload = function() {carousel(); };
 </script>
 </head>
@@ -44,10 +44,10 @@ window.onload = function() {carousel(); };
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a>
     </div>
-    <!--Hamburger menu-->
+<!--Hamburger menu-->
       <a href="javascript:void(0)"class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="toggleMenu()"> &#9776;</a>
   </div>
-  <!--mobile hamnurger memu-->
+ <!--mobile hamnurger memu-->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     <a href="#experience" class="w3-bar-item w3-button"> onclick="toggleMenu"()>Work experience</a>
     <a href="#gallery" class="w3-bar-item w3-button"> onclick="toggleMenu"()>Gallery</a>
