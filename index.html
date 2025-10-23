@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style> .mySlides {display: none; }</style>
 </head>
+<script>
+function toggleMenu() {
+  var x = document.getElementById("navDemo");
+if (x.className.indexOf("w3-show")== -1) {
+  x.className += "w3-show";
+}else{
+  x.className = x.className.replace(" w3-show","");
+}
+}
+</script>
 <body>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
