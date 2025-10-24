@@ -5,9 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style> 
   .mySlides {display: none; }
 </style>
+
 <script>
 //The mobile menu for my website
 function toggleMenu() {
@@ -32,6 +34,19 @@ function carousel() {
 }
 // the slide carousel should start after the page loads
 window.onload = function() {carousel(); };
+
+// filter drop down
+function filterImages() {
+  var filter = document.getElementById("filter").value;
+  var items = document.getElementsByClassName("filterItems");
+  for (var i = 0; i < items.length; i++){
+    if (filter === "all" || items[i].classList.contains(filter)) {
+      items[i].style.display = "inline-block";
+    } else{
+      items[i].style.display="none";
+    }
+  }
+}
 </script>
 </head>
 <body>
@@ -60,6 +75,12 @@ window.onload = function() {carousel(); };
     <a href="#contact" class="w3-bar-item w3-button" onclick="toggleMenu"()>Contact</a>
   </div>
 </div>
+
+<!-- Breadcrumbs-->
+<div class="w3-container w3-light-grey w3-padding-16" style="margin-top:50px">
+  <p><a href="#home">Home</a> > <a href="#about">About</a> > <a href="#contact">Contact</a></p>
+</div>
+
 <!-- Home page-->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
   <img class="w3-image" src="https://fastly.picsum.photos/id/8/5000/3333.jpg?hmac=OeG5ufhPYQBd6Rx1TAldAuF92lhCzAhKQKttGfawWuA" alt="A wooden table with a macbook on it with a blank screen, a phone laying face up on the table, a hot cup of coffee on a small plate and a open notebook with a pen on" width="1500" height="800">
@@ -95,9 +116,23 @@ window.onload = function() {carousel(); };
     </div>
   </div>
 </div>
-<!--Gallery Section-->
+
+<!-- Accordion-->
+<button onclick="document.getElementById('accordion1').classList.toggle('w3-show')" class="w3-button w3-block w3-light-grey w3-left-align">
+  Show Details
+</button>
+
+<!--Gallery Section with filter-->
 <div class="w3-container w3-border-light-grey w3-padding-64" id="gallery">
   <h2 class="w3-center">Gallery</h2>
+  
+  <div class="w3-center w3-padding">
+    <select id="filter" class="w3-select w3-border" style="max-width:300px" onchange="filterImages()">
+      <option value="all">Show All</option>
+      <option value="all">Office</option>
+    </select>
+  </div>
+
   <!-- slide show-->
   <div class="w3-content w3-section" style="max-width:900px;margin:auto">
     <!--gallery images for slide show-->
@@ -109,6 +144,7 @@ window.onload = function() {carousel(); };
     <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/147/2448/2448.jpg?hmac=Xk6y7EeyG6VQTac1N9IhDAwLVNVeCn_KBN4nO5SRxPw" style="width:100%">
   </div>
 </div>
+
 <!--About me section-->
 <div class="w3-content w3-padding-64" style="max-width:1100px" id="about">
   <h2>About Me</h2>
@@ -124,34 +160,73 @@ window.onload = function() {carousel(); };
     </div>
   </div>
 </div>
-<!-- contact me section-->
-<div class="w3-container w3-padding-64 w3-light-grey" id="contact"
-  <h2 class="w3-center">Contact Me</h2>
-  <!-- short form newletter-->
-   <div class="w3-container w3-padding-16">
+
+<!-- Contact Me Section with Modal -->
+<div class="w3-container w3-center w3-padding-64 w3-light-grey" id="contact">
+  <h2>Contact Me</h2>
+  <p>Click the button below to open the contact form.</p>
+  <button onclick="document.getElementById('contactModal').style.display='block'" class="w3-button w3-black">
+    Open Contact Form
+  </button>
+</div>
+
+<!-- My Modal -->
+<div id="contactModal" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width:600px">
+    <header class="w3-container w3-black">
+      <span onclick="document.getElementById('contactModal').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Contact Me</h2>
+    </header>
+
+    <div class="w3-container w3-padding-16">
+      <!-- Short form newsletter-->
       <h4>Newsletter Signup</h4>
       <form class="w3-container w3-border w3-round w3-padding">
         <label>Email</label>
-        <input class="w3-input w3-border" type:"email" placeholder="youremail@.com" required>
+        <input class="w3-input w3-border" type="email" placeholder="youremail@example.com" required>
         <button class="w3-button w3-black w3-margin-top">Subscribe</button>
       </form>
-   </div>
-  <!--long form contact-->
-  <div class="w3-container w3-padding-16">
-    <h4>Send me a message</h4>
-    <form class="w3-container w3-border w3-round w3-padding">
-      <label>Name</label>
-      <input class="w3-input w3-border" type="text" required>
-      <label>email</label>
-      <input class="w3-input w3-border" type="email" required>
-      <label>subject</label>
-      <input class="w3-input w3-border" type="text" required>
-      <label>Message</label>
-      <textarea class="w3-input w3-border" rows="6" placeholder="write your message to me here."></textarea>
-      <button class="w3-button w3-black w3-margin-top">Submit</button>
-    </form>
+    </div>
+
+    <div class="w3-container w3-padding-16">
+      <!-- Long form contact-->
+      <h4>Send Me a Message</h4>
+      <form class="w3-container w3-border w3-round w3-padding">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" placeholder="Your full name" required>
+
+        <label>Email</label>
+        <input class="w3-input w3-border" type="email" placeholder="youremail@example.com" required>
+
+        <label>Subject</label>
+        <input class="w3-input w3-border" type="text" placeholder="Subject" required>
+
+        <label>Message</label>
+        <textarea class="w3-input w3-border" rows="6" placeholder="Write your message here..." required></textarea>
+
+        <button class="w3-button w3-black w3-margin-top">Submit</button>
+      </form>
+    </div>
+
+    <footer class="w3-container w3-black w3-padding">
+      <button onclick="document.getElementById('contactModal').style.display='none'" class="w3-button w3-white">
+        Close
+      </button>
+    </footer>
   </div>
 </div>
+
+<!-- closes modal when clicking outside -->
+<script>
+  window.onclick = function(event) {
+    const modal = document.getElementById('contactModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
 
 
 <footer class="w3-center w3-black w3-padding-16">
