@@ -2,60 +2,74 @@
 <html>
 <head>
 <title>My Gallery</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<style> 
-  .mySlides {display: none; }
+<style>
+  .mySlides {display: none;}
 </style>
 
 <script>
+
 //The mobile menu for my website
 function toggleMenu() {
   var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show")== -1) {
+  if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
   } else {
-    x.className = x.className.replace(" w3-show","");
+    x.className = x.className.replace(" w3-show", "");
   }
 }
 
-//slide carousel for gallery for every 3 seconds to change pictures
-var slideIndex =0;
-function carousel() {
+// variables for slideshow
+var slideIndex = 0;
+var slides = [];
+
+// Slideshow Start
+function startCarousel() {
   var i;
   var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {x[i].style.display = "none"; }
+  for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
   slideIndex++;
   if (slideIndex > x.length) { slideIndex = 1; }
-  if (x.length > 0) x[slideIndex-1].style.display ="block";
-  setTimeout(carousel, 3000);
+  if (x.length > 0) x[slideIndex - 1].style.display = "block";
+  setTimeout(startCarousel, 3000); // Change image every 3 seconds
 }
-// the slide carousel should start after the page loads
-window.onload = function() {carousel(); };
 
-// filter drop down
+// Filter function that updates which slides are visible
 function filterImages() {
   var filter = document.getElementById("filter").value;
-  var items = document.getElementsByClassName("filterItems");
-  for (var i = 0; i < items.length; i++){
-    if (filter === "all" || items[i].classList.contains(filter)) {
-      items[i].style.display = "inline-block";
-    } else{
-      items[i].style.display="none";
+  var allSlides = document.getElementsByClassName("filterItems");
+
+  for (var i = 0; i < allSlides.length; i++) {
+    allSlides[i].style.display = "none";
+  }
+
+  // Show only the selected category
+  for (var j = 0; j < allSlides.length; j++) {
+    if (filter === "all" || allSlides[j].classList.contains(filter)) {
+      allSlides[j].style.display = "block";
     }
   }
+
+  // Restarting the slideshow with only selected
+  slideIndex = 0;
+  startCarousel();
 }
+
+// Start carousel when page loads
+window.onload = function() {
+  startCarousel();
+};
 </script>
 </head>
 <body>
-<!-- Navbar for all pages -->
+
+<!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
     <a href="index.html" class="w3-bar-item w3-button"><b>My</b> Resume</a>
-
-    <!--my page links-->
     <div class="w3-right w3-hide-small">
       <a href="experience.html" class="w3-bar-item w3-button">Work experience</a>
       <a href="gallery.html" class="w3-bar-item w3-button">Gallery</a>
@@ -63,53 +77,53 @@ function filterImages() {
       <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
       <a href="sitemap.html" class="w3-bar-item w3-button">Sitemap</a>
     </div>
-
-  <!--Hamburger menu-->
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="toggleMenu()">&#9776;</a>
   </div>
 
- <!--mobile hamnburger memu-->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     <a href="experience.html" class="w3-bar-item w3-button" onclick="toggleMenu()">Work experience</a>
-    <a href="gallery.html" class="w3-bar-item w3-button" onclick="toggleMenu"()>Gallery</a>
-    <a href="about.html" class="w3-bar-item w3-button" onclick="toggleMenu"()>About me</a>
-    <a href="contact.html" class="w3-bar-item w3-button" onclick="toggleMenu"()>Contact</a>
-    <a href="sitemap.html" class="w3-bar-item w3-button" onclick="toggleMenu"()>Sitemap</a>
+    <a href="gallery.html" class="w3-bar-item w3-button" onclick="toggleMenu()">Gallery</a>
+    <a href="about.html" class="w3-bar-item w3-button" onclick="toggleMenu()">About me</a>
+    <a href="contact.html" class="w3-bar-item w3-button" onclick="toggleMenu()">Contact</a>
+    <a href="sitemap.html" class="w3-bar-item w3-button" onclick="toggleMenu()">Sitemap</a>
   </div>
 </div>
 
-<!-- Breadcrumbs-->
+<!-- Breadcrumbs -->
 <div class="w3-container w3-light-grey w3-padding-16" style="margin-top:50px">
-  <p><a href="index.html">Home</a> > <a href="about.html">About</a> > <a href="contact.html">Contact</a> > <a href="gallery.html">Gallery</a> > <a href="experience.html">experience</a></p>
+  <p><a href="index.html">Home</a> > <a href="gallery.html">Gallery</a></p>
 </div>
 
-
-<!--Gallery Section with filter-->
+<!-- Gallery Section -->
 <div class="w3-container w3-border-light-grey w3-padding-64" id="gallery">
   <h2 class="w3-center">Gallery</h2>
   
+  <!-- Filter Dropdown -->
   <div class="w3-center w3-padding">
     <select id="filter" class="w3-select w3-border" style="max-width:300px" onchange="filterImages()">
       <option value="all">Show All</option>
-      <option value="all">Office</option>
+      <option value="office">Office</option>
+      <option value="nature">Nature</option>
     </select>
   </div>
 
-  <!-- slide show-->
+  <!-- Slideshow Container -->
   <div class="w3-content w3-section" style="max-width:900px;margin:auto">
-    <!--gallery images for slide show-->
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/20/3670/2462.jpg?hmac=CmQ0ln-k5ZqkdtLvVO23LjVAEabZQx2wOaT4pyeG10I" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/36/4179/2790.jpg?hmac=OCuYYm0PkDCMwxWhrtoSefG5UDir4O0XCcR2x-aSPjs" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/48/5000/3333.jpg?hmac=y3_1VDNbhii0vM_FN6wxMlvK27vFefflbUSH06z98so" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/60/1920/1200.jpg?hmac=fAMNjl4E_sG_WNUjdU39Kald5QAHQMh-_-TsIbbeDNI" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/147/2448/2448.jpg?hmac=Xk6y7EeyG6VQTac1N9IhDAwLVNVeCn_KBN4nO5SRxPw" style="width:100%">
+    <img class="mySlides filterItems office" src="https://fastly.picsum.photos/id/20/3670/2462.jpg?hmac=CmQ0ln-k5ZqkdtLvVO23LjVAEabZQx2wOaT4pyeG10I" style="width:100%">
+    <img class="mySlides filterItems nature" src="https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI" style="width:100%">
+    <img class="mySlides filterItems office" src="https://fastly.picsum.photos/id/36/4179/2790.jpg?hmac=OCuYYm0PkDCMwxWhrtoSefG5UDir4O0XCcR2x-aSPjs" style="width:100%">
+    <img class="mySlides filterItems nature" src="https://fastly.picsum.photos/id/48/5000/3333.jpg?hmac=y3_1VDNbhii0vM_FN6wxMlvK27vFefflbUSH06z98so" style="width:100%">
+    <img class="mySlides filterItems office" src="https://fastly.picsum.photos/id/60/1920/1200.jpg?hmac=fAMNjl4E_sG_WNUjdU39Kald5QAHQMh-_-TsIbbeDNI" style="width:100%">
+    <img class="mySlides filterItems nature" src="https://fastly.picsum.photos/id/147/2448/2448.jpg?hmac=Xk6y7EeyG6VQTac1N9IhDAwLVNVeCn_KBN4nO5SRxPw" style="width:100%">
   </div>
 </div>
 
 
 <footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by 
+    <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" 
+       class="w3-hover-text-green">w3.css</a>
+  </p>
 </footer>
 
 </body>
