@@ -6,10 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<style> 
-  .mySlides {display: none; }
-</style>
-
 <script>
 //The mobile menu for my website
 function toggleMenu() {
@@ -20,37 +16,11 @@ function toggleMenu() {
     x.className = x.className.replace(" w3-show","");
   }
 }
-
-//slide carousel for gallery for every 3 seconds to change pictures
-var slideIndex =0;
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {x[i].style.display = "none"; }
-  slideIndex++;
-  if (slideIndex > x.length) { slideIndex = 1; }
-  if (x.length > 0) x[slideIndex-1].style.display ="block";
-  setTimeout(carousel, 3000);
-}
-// the slide carousel should start after the page loads
-window.onload = function() {carousel(); };
-
-// filter drop down
-function filterImages() {
-  var filter = document.getElementById("filter").value;
-  var items = document.getElementsByClassName("filterItems");
-  for (var i = 0; i < items.length; i++){
-    if (filter === "all" || items[i].classList.contains(filter)) {
-      items[i].style.display = "inline-block";
-    } else{
-      items[i].style.display="none";
-    }
-  }
-}
 </script>
 </head>
+
 <body>
-<!-- Navbar (sit on top) -->
+<!-- Navbar for all pages -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
     <a href="index.html" class="w3-bar-item w3-button"><b>My</b> Resume</a>
@@ -76,73 +46,10 @@ function filterImages() {
   </div>
 </div>
 
+
 <!-- Breadcrumbs-->
 <div class="w3-container w3-light-grey w3-padding-16" style="margin-top:50px">
-  <p><a href="#home">Home</a> > <a href="#about">About</a> > <a href="#contact">Contact</a></p>
-</div>
-
-<!-- Home page-->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="https://fastly.picsum.photos/id/8/5000/3333.jpg?hmac=OeG5ufhPYQBd6Rx1TAldAuF92lhCzAhKQKttGfawWuA" alt="A wooden table with a macbook on it with a blank screen, a phone laying face up on the table, a hot cup of coffee on a small plate and a open notebook with a pen on" width="1500" height="800">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white">
-      <span class="w3-padding w3-black w3-opacity-min"><b>My Resume</b></span> 
-    </h1>
-  </div>
-</header>
-<!-- Work experience-->
-<div class="w3-display-container w3-content w3-wide" style="max-width:1564px;" id="experience">
-  <div class="w3-container w3-padding-32">
-    <h3 class="W3-border-bottom w3-border-light-grey w3-padding-16">Work experience</h3>
-
-    <div class="w3-row-padding w3-padding-16">
-      <div class="w3-col s12 m6 14">
-        <h4>Burger king 2005-2007</h4>
-        <P>Job title: Lorem ipsum dolor sit amet consectetur adipiscing elit.</P>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-      </div>
-
-      <div class="w3-col s12 m6 14">
-        <h4>Hobby Lobby 2007-2010</h4>
-        <P>Job title: ipsum dolor sit amet consectetur adipiscing elit.</P>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-      </div>
-
-      <div class="w3-col s12 m6 14">
-        <h4>Microsoft 2010-now</h4>
-        <P>Job title: ipsum dolor sit amet consectetur adipiscing elit.</P>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Accordion-->
-<button onclick="document.getElementById('accordion1').classList.toggle('w3-show')" class="w3-button w3-block w3-light-grey w3-left-align">
-  Show Details
-</button>
-
-<!--Gallery Section with filter-->
-<div class="w3-container w3-border-light-grey w3-padding-64" id="gallery">
-  <h2 class="w3-center">Gallery</h2>
-  
-  <div class="w3-center w3-padding">
-    <select id="filter" class="w3-select w3-border" style="max-width:300px" onchange="filterImages()">
-      <option value="all">Show All</option>
-      <option value="all">Office</option>
-    </select>
-  </div>
-
-  <!-- slide show-->
-  <div class="w3-content w3-section" style="max-width:900px;margin:auto">
-    <!--gallery images for slide show-->
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/20/3670/2462.jpg?hmac=CmQ0ln-k5ZqkdtLvVO23LjVAEabZQx2wOaT4pyeG10I" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/36/4179/2790.jpg?hmac=OCuYYm0PkDCMwxWhrtoSefG5UDir4O0XCcR2x-aSPjs" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/48/5000/3333.jpg?hmac=y3_1VDNbhii0vM_FN6wxMlvK27vFefflbUSH06z98so" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/60/1920/1200.jpg?hmac=fAMNjl4E_sG_WNUjdU39Kald5QAHQMh-_-TsIbbeDNI" style="width:100%">
-    <img class="mySlides w3-animate-fading" src="https://fastly.picsum.photos/id/147/2448/2448.jpg?hmac=Xk6y7EeyG6VQTac1N9IhDAwLVNVeCn_KBN4nO5SRxPw" style="width:100%">
-  </div>
+  <p><a href="index.html">Home</a> > <a href="about.html">About</a> > <a href="contact.html">Contact</a> > <a href="gallery.html">Gallery</a> > <a href="experience.html">experience</a></p>
 </div>
 
 <!--About me section-->
@@ -160,74 +67,6 @@ function filterImages() {
     </div>
   </div>
 </div>
-
-<!-- Contact Me Section with Modal -->
-<div class="w3-container w3-center w3-padding-64 w3-light-grey" id="contact">
-  <h2>Contact Me</h2>
-  <p>Click the button below to open the contact form.</p>
-  <button onclick="document.getElementById('contactModal').style.display='block'" class="w3-button w3-black">
-    Open Contact Form
-  </button>
-</div>
-
-<!-- My Modal -->
-<div id="contactModal" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width:600px">
-    <header class="w3-container w3-black">
-      <span onclick="document.getElementById('contactModal').style.display='none'" 
-            class="w3-button w3-display-topright">&times;</span>
-      <h2>Contact Me</h2>
-    </header>
-
-    <div class="w3-container w3-padding-16">
-      <!-- Short form newsletter-->
-      <h4>Newsletter Signup</h4>
-      <form class="w3-container w3-border w3-round w3-padding">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="email" placeholder="youremail@example.com" required>
-        <button class="w3-button w3-black w3-margin-top">Subscribe</button>
-      </form>
-    </div>
-
-    <div class="w3-container w3-padding-16">
-      <!-- Long form contact-->
-      <h4>Send Me a Message</h4>
-      <form class="w3-container w3-border w3-round w3-padding">
-        <label>Name</label>
-        <input class="w3-input w3-border" type="text" placeholder="Your full name" required>
-
-        <label>Email</label>
-        <input class="w3-input w3-border" type="email" placeholder="youremail@example.com" required>
-
-        <label>Subject</label>
-        <input class="w3-input w3-border" type="text" placeholder="Subject" required>
-
-        <label>Message</label>
-        <textarea class="w3-input w3-border" rows="6" placeholder="Write your message here..." required></textarea>
-
-        <button class="w3-button w3-black w3-margin-top">Submit</button>
-      </form>
-    </div>
-
-    <footer class="w3-container w3-black w3-padding">
-      <button onclick="document.getElementById('contactModal').style.display='none'" class="w3-button w3-white">
-        Close
-      </button>
-    </footer>
-  </div>
-</div>
-
-<!-- closes modal when clicking outside -->
-<script>
-  window.onclick = function(event) {
-    const modal = document.getElementById('contactModal');
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-</script>
-
-
 
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
